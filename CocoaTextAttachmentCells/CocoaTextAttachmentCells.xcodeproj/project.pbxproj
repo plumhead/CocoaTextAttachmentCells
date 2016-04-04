@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		582E355A1CB2ECC800D071B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582E35591CB2ECC800D071B9 /* AppDelegate.swift */; };
+		582E355C1CB2ECC800D071B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582E355B1CB2ECC800D071B9 /* ViewController.swift */; };
+		582E355E1CB2ECC800D071B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 582E355D1CB2ECC800D071B9 /* Assets.xcassets */; };
+		582E35611CB2ECC800D071B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 582E355F1CB2ECC800D071B9 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		582E35561CB2ECC800D071B9 /* CocoaTextAttachmentCells.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoaTextAttachmentCells.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		582E35591CB2ECC800D071B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		582E355B1CB2ECC800D071B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		582E355D1CB2ECC800D071B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		582E35601CB2ECC800D071B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		582E35621CB2ECC800D071B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		582E35531CB2ECC700D071B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		582E354D1CB2ECC700D071B9 = {
+			isa = PBXGroup;
+			children = (
+				582E35581CB2ECC800D071B9 /* CocoaTextAttachmentCells */,
+				582E35571CB2ECC800D071B9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		582E35571CB2ECC800D071B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				582E35561CB2ECC800D071B9 /* CocoaTextAttachmentCells.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		582E35581CB2ECC800D071B9 /* CocoaTextAttachmentCells */ = {
+			isa = PBXGroup;
+			children = (
+				582E35591CB2ECC800D071B9 /* AppDelegate.swift */,
+				582E355B1CB2ECC800D071B9 /* ViewController.swift */,
+				582E355D1CB2ECC800D071B9 /* Assets.xcassets */,
+				582E355F1CB2ECC800D071B9 /* Main.storyboard */,
+				582E35621CB2ECC800D071B9 /* Info.plist */,
+			);
+			path = CocoaTextAttachmentCells;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		582E35551CB2ECC700D071B9 /* CocoaTextAttachmentCells */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 582E35651CB2ECC800D071B9 /* Build configuration list for PBXNativeTarget "CocoaTextAttachmentCells" */;
+			buildPhases = (
+				582E35521CB2ECC700D071B9 /* Sources */,
+				582E35531CB2ECC700D071B9 /* Frameworks */,
+				582E35541CB2ECC700D071B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CocoaTextAttachmentCells;
+			productName = CocoaTextAttachmentCells;
+			productReference = 582E35561CB2ECC800D071B9 /* CocoaTextAttachmentCells.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		582E354E1CB2ECC700D071B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Plumhead Software";
+				TargetAttributes = {
+					582E35551CB2ECC700D071B9 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 582E35511CB2ECC700D071B9 /* Build configuration list for PBXProject "CocoaTextAttachmentCells" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 582E354D1CB2ECC700D071B9;
+			productRefGroup = 582E35571CB2ECC800D071B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				582E35551CB2ECC700D071B9 /* CocoaTextAttachmentCells */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		582E35541CB2ECC700D071B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				582E355E1CB2ECC800D071B9 /* Assets.xcassets in Resources */,
+				582E35611CB2ECC800D071B9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		582E35521CB2ECC700D071B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				582E355C1CB2ECC800D071B9 /* ViewController.swift in Sources */,
+				582E355A1CB2ECC800D071B9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		582E355F1CB2ECC800D071B9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				582E35601CB2ECC800D071B9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		582E35631CB2ECC800D071B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		582E35641CB2ECC800D071B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		582E35661CB2ECC800D071B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CocoaTextAttachmentCells/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.plumhead-software.CocoaTextAttachmentCells";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		582E35671CB2ECC800D071B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CocoaTextAttachmentCells/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.plumhead-software.CocoaTextAttachmentCells";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		582E35511CB2ECC700D071B9 /* Build configuration list for PBXProject "CocoaTextAttachmentCells" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				582E35631CB2ECC800D071B9 /* Debug */,
+				582E35641CB2ECC800D071B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		582E35651CB2ECC800D071B9 /* Build configuration list for PBXNativeTarget "CocoaTextAttachmentCells" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				582E35661CB2ECC800D071B9 /* Debug */,
+				582E35671CB2ECC800D071B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 582E354E1CB2ECC700D071B9 /* Project object */;
+}
