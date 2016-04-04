@@ -87,7 +87,66 @@ If you build and run the application at this stage you should see output like th
 ![Basic Cell Screenshot](BasicCellDisplay.png).
 
 
+### Displaying Text
 
+Now we have the ability to display a simple cell we can start building out the real functionality of this post - starting with drawing text in the cell. *This may seem a little strange but stick with it and all will make sense in the end.*
+
+The first change we need to make is to the *TextDisplayCell* to pass in more content to the initialiser as shown below: -
+
+	init(withSize s: NSSize, forContent c: String, withFont font: NSFont) 	{
+        self.size = s
+        
+        let img = NSImage(size: s, flipped: false) { (r) -> Bool in
+            let p = NSBezierPath(rect: r)
+            NSColor.greenColor().setFill()
+            p.fill()
+            (c as NSString).drawInRect(r, withAttributes: [NSFontAttributeName:font])
+            return true
+        }
+        
+        super.init(imageCell: img)
+    }
+
+We pass in a string to display and the font which want to use for the display and extend our image drawing code (leaving the fill so we can clearly see the cell layout bounds when displayed).
+
+Update the view controller cell initialisation to the following then build and run the project.
+
+        let inline = TextDisplayCell(withSize: NSSize(width: 100, height: 34), forContent: "Sample Layout", withFont: NSFont.systemFontOfSize(34))
+
+You should see output matching the following. 
+
+![Text Layout Screenshot](BasicTextDisplayWithInvalidSizing.png)
+
+To fix the text sizing issue you can see here it's necessary to utilise a handy extension to string which calculates the rectangle necessary to display a full string. It requires that a text layout manager and text container be created and used to find the appropriate used rectangle for the associated string.
+
+
+    extension String {
+        func size(withAttributes attrs: [String:AnyObject], constrainedTo box: NSSize, padding: CGFloat = 0.0) -> NSSize {
+            let storage = NSTextStorage(string: self)
+            let container = NSTextContainer(containerSize: NSSize(width: box.width, height: box.height))
+            let layout = NSLayoutManager()
+            layout.addTextContainer(container)
+            storage.addLayoutManager(layout)
+            storage.addAttributes(attrs, range: NSMakeRange(0, storage.length))
+            container.lineFragmentPadding = padding
+            let _ = layout.glyphRangeForTextContainer(container)
+            let ur = layout.usedRectForTextContainer(container)
+            
+            return NSSize(width: ur.width, height: ur.height)
+        }
+    }
+
+Now update the cell initialisation code in the view controller to the following:-
+
+ 	let content = "Sample Layout"
+    let cellSize = content.size(withAttributes: [NSFontAttributeName:NSFont.systemFontOfSize(34)], constrainedTo: NSSize(width: 5000, height: 5000))
+    let inline = TextDisplayCell(withSize: cellSize, forContent: content, withFont: NSFont.systemFontOfSize(34))
+
+*Note: the font and sizing here should match that set for the text view - it's not a requirement but will help to demonstrate some points we need to address and which can be seen in the following screenshot*
+
+![Sized Text](BasicTextDisplayWithSizing.png)
+
+We've now got the correct width and height for the content but as can be seen the cell baseline is set to the text baseline so the drawn text doesn't follow the natural layout. This is actually quite a simple fix.
 
 
 

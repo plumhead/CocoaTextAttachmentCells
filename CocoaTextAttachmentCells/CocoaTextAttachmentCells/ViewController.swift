@@ -13,13 +13,22 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let text = "AScxtyz"
+        let font = NSFont.systemFontOfSize(64)
+        let attr = NSMutableAttributedString(string: text, attributes: [NSForegroundColorAttributeName:NSColor.blackColor(), NSFontAttributeName:font])
 
-        let inline = TextDisplayCell(withSize: NSSize(width: 100, height: 34))
+        let content = "cyQWTPHSApjx"
+        let cellSize = content.size(withAttributes: [NSFontAttributeName:font], constrainedTo: NSSize(width: 5000, height: 5000))
+        let h = max(cellSize.height, font.ascender + fabs(font.descender))
+
+        let inline = TextDisplayCell(withSize: NSSize(width: cellSize.width, height: h), forContent: content, withFont: font)
         let cell = NSTextAttachment()
         cell.attachmentCell = inline
         let cellstr = NSAttributedString(attachment: cell)
+        attr.insertAttributedString(cellstr, atIndex: 3)
         
-        editor.textStorage?.replaceCharactersInRange(NSRange(location: 3, length: 0), withAttributedString: cellstr)
+        editor.textStorage?.replaceCharactersInRange(NSRange(location: 0, length: 0), withAttributedString: attr)
     }
 
 }

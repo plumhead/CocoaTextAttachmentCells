@@ -688,7 +688,7 @@
                                             <attributedString key="textStorage">
                                                 <fragment content="AbcxyZ">
                                                     <attributes>
-                                                        <font key="NSFont" size="34" name="Helvetica"/>
+                                                        <font key="NSFont" metaFont="system" size="60"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
