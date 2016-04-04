@@ -84,7 +84,7 @@ The full content of our View Controller now looks like the following - *note tha
 If you build and run the application at this stage you should see output like the following: -
 
 
-![Basic Cell Screenshot](https://github.com/plumhead/CocoaTextAttachmentCells/BasicCellDisplay.png).
+![Basic Cell Screenshot](BasicCellDisplay.png).
 
 
 
