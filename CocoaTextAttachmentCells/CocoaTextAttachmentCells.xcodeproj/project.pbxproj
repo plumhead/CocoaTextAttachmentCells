@@ -13,6 +13,7 @@
 		582E35611CB2ECC800D071B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 582E355F1CB2ECC800D071B9 /* Main.storyboard */; };
 		5889F7131CB2F01C0041BB29 /* TextDisplayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5889F7121CB2F01C0041BB29 /* TextDisplayCell.swift */; };
 		5889F7151CB300EC0041BB29 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5889F7141CB300EC0041BB29 /* StringExtensions.swift */; };
+		58F96C5F1CB960B900ADFA8A /* VisualDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F96C5E1CB960B900ADFA8A /* VisualDomain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		582E35621CB2ECC800D071B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5889F7121CB2F01C0041BB29 /* TextDisplayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDisplayCell.swift; sourceTree = "<group>"; };
 		5889F7141CB300EC0041BB29 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		58F96C5E1CB960B900ADFA8A /* VisualDomain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualDomain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				582E35621CB2ECC800D071B9 /* Info.plist */,
 				5889F7121CB2F01C0041BB29 /* TextDisplayCell.swift */,
 				5889F7141CB300EC0041BB29 /* StringExtensions.swift */,
+				58F96C5E1CB960B900ADFA8A /* VisualDomain.swift */,
 			);
 			path = CocoaTextAttachmentCells;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			files = (
 				5889F7151CB300EC0041BB29 /* StringExtensions.swift in Sources */,
 				582E355C1CB2ECC800D071B9 /* ViewController.swift in Sources */,
+				58F96C5F1CB960B900ADFA8A /* VisualDomain.swift in Sources */,
 				582E355A1CB2ECC800D071B9 /* AppDelegate.swift in Sources */,
 				5889F7131CB2F01C0041BB29 /* TextDisplayCell.swift in Sources */,
 			);

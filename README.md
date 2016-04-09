@@ -148,11 +148,78 @@ Now update the cell initialisation code in the view controller to the following:
 
 We've now got the correct width and height for the content but as can be seen the cell baseline is set to the text baseline so the drawn text doesn't follow the natural layout. This is actually quite a simple fix.
 
+First we need to add an attribute to the *TextDisplayCell* class to capture the passed display font and then simply add the following function override.
+
+ 	override func cellBaselineOffset() -> NSPoint {
+        return NSPoint(x: 0, y: displayFont.descender) // Note descender is negative so effect is to move down the origin
+    }
+
+Let's take the opportunity to extend the rendering slightly to show other font sizing attributes - simply update the image generation code to the following: -
+
+	let img = NSImage(size: s, flipped: false) { (r) -> Bool in
+            (c as NSString).drawAtPoint(NSPoint(x: 0, y: 0), withAttributes: [NSFontAttributeName:font])
+            
+            // First draw the baseline
+            NSColor.blueColor().setStroke()
+            let blp = NSBezierPath()
+            blp.moveToPoint(NSPoint(x: 0, y: 1))
+            blp.lineToPoint(NSPoint(x: s.width, y: 1))
+            blp.stroke()
+            
+            // Now draw the lower descender line
+            NSColor.redColor().setStroke()
+            let lp = NSBezierPath()
+            lp.moveToPoint(NSPoint(x: 0, y: fabs(font.descender)))
+            lp.lineToPoint(NSPoint(x: s.width, y: fabs(font.descender)))
+            lp.stroke()
+            
+            // Now draw the xHeight line
+            let lp2 = NSBezierPath()
+            NSColor.cyanColor().setStroke()
+            lp2.moveToPoint(NSPoint(x: 0, y: font.xHeight))
+            lp2.lineToPoint(NSPoint(x: s.width, y: font.xHeight))
+            lp2.stroke()
+            
+            // Now draw the upper ascender line
+            let lp3 = NSBezierPath()
+            NSColor.greenColor().setStroke()
+            lp3.moveToPoint(NSPoint(x: 0, y: font.ascender))
+            lp3.lineToPoint(NSPoint(x: s.width, y: font.ascender))
+            lp3.stroke()
+            return true
+        }
+
+Here we simply draw horizontal lines denoting the font ascender, xHeight, baseline and descender. To better demonstrate we also take the opportunity to modify the rendered text slightly.
+
+The view controller *viewDidLoad* function is now:-
 
 
+	override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let text = "AScxtyz"
+        let font = NSFont.systemFontOfSize(64)
+        let attr = NSMutableAttributedString(string: text, attributes: [NSForegroundColorAttributeName:NSColor.blackColor(), NSFontAttributeName:font])
+
+        let content = "cyQWTPHSApjx"
+        let cellSize = content.size(withAttributes: [NSFontAttributeName:font], constrainedTo: NSSize(width: 5000, height: 5000))
+        let h = max(cellSize.height, font.ascender + fabs(font.descender))
+
+        let inline = TextDisplayCell(withSize: NSSize(width: cellSize.width, height: h), forContent: content, withFont: font)
+        let cell = NSTextAttachment()
+        cell.attachmentCell = inline
+        let cellstr = NSAttributedString(attachment: cell)
+        attr.insertAttributedString(cellstr, atIndex: 3)
+        
+        editor.textStorage?.replaceCharactersInRange(NSRange(location: 0, length: 0), withAttributedString: attr)
+    }
 
 
+Building and running this produces the following output.
 
+![Font Attributes](TextFontAttributeDisplay.png)
+
+Now the text image is correctly baselined with the other attributed text in the edit view.
 
 
 

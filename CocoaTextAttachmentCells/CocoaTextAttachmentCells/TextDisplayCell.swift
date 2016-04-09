@@ -37,15 +37,15 @@ class TextDisplayCell : NSTextAttachmentCell {
             // Now draw the xHeight line
             let lp2 = NSBezierPath()
             NSColor.cyanColor().setStroke()
-            lp2.moveToPoint(NSPoint(x: 0, y: fabs(font.xHeight)))
-            lp2.lineToPoint(NSPoint(x: s.width, y: fabs(font.xHeight)))
+            lp2.moveToPoint(NSPoint(x: 0, y: font.xHeight))
+            lp2.lineToPoint(NSPoint(x: s.width, y: font.xHeight))
             lp2.stroke()
             
             // Now draw the upper ascender line
             let lp3 = NSBezierPath()
             NSColor.greenColor().setStroke()
-            lp3.moveToPoint(NSPoint(x: 0, y: fabs(font.ascender)))
-            lp3.lineToPoint(NSPoint(x: s.width, y: fabs(font.ascender)))
+            lp3.moveToPoint(NSPoint(x: 0, y: font.ascender))
+            lp3.lineToPoint(NSPoint(x: s.width, y: font.ascender))
             lp3.stroke()
             return true
         }
