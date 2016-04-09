@@ -18,23 +18,30 @@ class TextDisplayCell : NSTextAttachmentCell {
         self.displayFont = font
         
         let img = NSImage(size: s, flipped: false) { (r) -> Bool in
-            (c as NSString).drawInRect(r, withAttributes: [NSFontAttributeName:font])
+            (c as NSString).drawAtPoint(NSPoint(x: 0, y: 0), withAttributes: [NSFontAttributeName:font])
             
+            // First draw the baseline
             NSColor.blueColor().setStroke()
             let blp = NSBezierPath()
-            blp.moveToPoint(NSPoint(x: 0, y: 0))
-            blp.lineToPoint(NSPoint(x: s.width, y: 0))
+            blp.moveToPoint(NSPoint(x: 0, y: 1))
+            blp.lineToPoint(NSPoint(x: s.width, y: 1))
             blp.stroke()
+            
+            // Now draw the lower descender line
             NSColor.redColor().setStroke()
             let lp = NSBezierPath()
             lp.moveToPoint(NSPoint(x: 0, y: fabs(font.descender)))
             lp.lineToPoint(NSPoint(x: s.width, y: fabs(font.descender)))
             lp.stroke()
+            
+            // Now draw the xHeight line
             let lp2 = NSBezierPath()
             NSColor.cyanColor().setStroke()
             lp2.moveToPoint(NSPoint(x: 0, y: fabs(font.xHeight)))
             lp2.lineToPoint(NSPoint(x: s.width, y: fabs(font.xHeight)))
             lp2.stroke()
+            
+            // Now draw the upper ascender line
             let lp3 = NSBezierPath()
             NSColor.greenColor().setStroke()
             lp3.moveToPoint(NSPoint(x: 0, y: fabs(font.ascender)))
@@ -55,6 +62,6 @@ class TextDisplayCell : NSTextAttachmentCell {
     }
     
     override func cellBaselineOffset() -> NSPoint {
-        return NSPoint(x: 0, y: displayFont.descender)
+        return NSPoint(x: 0, y: displayFont.descender) // Note descender is negative so effect is to move down the origin
     }
 }
