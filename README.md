@@ -221,6 +221,40 @@ Building and running this produces the following output.
 
 Now the text image is correctly baselined with the other attributed text in the edit view.
 
+## Building a Visual Element Domain
+
+Now the basics of building attachment cells is in place we can start to flesh out the real detail of this blog post. We start by defining a bunch of visual domain types for the rendering engine.
+
+    /// Capture the size characteristics of a Visual Element
+    struct ElementSize {
+        let width       : CGFloat
+        let height      : CGFloat
+        let realWidth   : CGFloat
+        let baseline    : CGFloat
+        let xHeight     : CGFloat
+    }
+    
+    /// Visual style elements
+    struct VisualStyle {
+        let fontSize : CGFloat
+    }
+    
+    /// The set of elements which can be rendered
+    indirect enum VisualPart {
+        case Text(t: String, frame: ElementSize, style: VisualStyle)
+    }
+    
+    /// Protocol for domain types which can be visualised.
+    protocol VisualPartCreator {
+        func build(withStyle style: VisualStyle) -> VisualPart
+    }
+
+>
+* *ElementSize*	- this captures the sizing information required by the rendering process. We won't require all the font descriptor attributes but just a baseline and xHeight.
+* *VisualStyle* - at the moment only a fontSize is required (we will extend this later to include other style elements)
+* *VisualPart* - this enum will capture the types of items which will be displayed - only Text being required at this stage but will be extended to include other elements shortly. *(A clue might be the fact that this enum is declared indirect - a requirement for Swift enums when the enum refers back to itself)*
+* *VisualPartCreator* - This protocol will be attached to elements to indicate that they can create VisualParts.
+
 
 
 
