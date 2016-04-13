@@ -22,7 +22,7 @@ class ViewController: NSViewController {
         let cellSize = content.size(withAttributes: [NSFontAttributeName:font], constrainedTo: NSSize(width: 5000, height: 5000))
         let h = max(cellSize.height, font.ascender + fabs(font.descender))
 
-        let inline = TextDisplayCell(withSize: NSSize(width: cellSize.width, height: h), forContent: content, withFont: font)
+        let inline = TextDisplayCell(item: content, style: VisualStyle(fontSize: 64), usingRenderer: GraphicalImageRender())
         let cell = NSTextAttachment()
         cell.attachmentCell = inline
         let cellstr = NSAttributedString(attachment: cell)
