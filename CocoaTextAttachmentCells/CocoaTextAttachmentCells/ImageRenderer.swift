@@ -19,14 +19,53 @@ class GraphicalImageRender : VisualElementRenderer, VisualElementLayoutHandler {
         ns.drawAtPoint(p, withAttributes: [NSFontAttributeName:font,NSForegroundColorAttributeName:NSColor.blackColor()])
     }
     
-    func render(item i: VisualPartCreator, withStyle style: VisualStyle) -> (RenderType,ElementSize) {
-        let part = i.build(withStyle: style)
-        let s = part.frame
+    func box(origin: NSPoint, size: NSSize, withStyle style: VisualStyle) {
+        let r = NSRect(origin: origin, size: size)
+        let p = NSBezierPath(rect: r)
+        NSColor.blackColor().setStroke()
+        p.lineWidth = 1
+        p.stroke()
+    }
         
-        let inlineImg = NSImage(size: NSSize(width: s.width, height: s.height), flipped: false) {(r) -> Bool in
-            self.layout(part, x: 0, y:0, containerSize: part.frame, withStyle: style)
+    func shape(type: ShapeType, frame f: NSRect, withStyle style: VisualStyle) {
+        switch type {
+        case .Empty: ()
+
+        case let .Path(pts) :
+            switch pts.count {
+            case 0: return  // no path
+            case 1 : return // single point
+            case let n :
+                let p = NSBezierPath()
+                p.lineWidth = 1.0
+                p.moveToPoint(pts[0] + f.origin)
+                for i in 1..<n {
+                    p.lineToPoint(pts[i] + f.origin)
+                }
+                
+                p.stroke()
+            }
+            
+        case let .Curve(from,cp1,cp2,to) :
+            let p = NSBezierPath()
+            p.lineWidth = 1
+            p.moveToPoint(from + f.origin)
+            p.curveToPoint(to + f.origin, controlPoint1: cp1 + f.origin, controlPoint2: cp2 + f.origin)
+            p.stroke()
+            
+        case let .ComplexPath(path) :
+            let p = path(f,style)
+            p.stroke()
+        }
+    }
+
+    
+    func render(item i: VisualPart, withStyle style: VisualStyle) -> (RenderType,ElementSize) {
+        let f = i.frame
+        let inlineImg = NSImage(size: NSSize(width: f.width, height: f.height), flipped: false) {(r) -> Bool in
+            self.layout(i, x: 0, y:0, containerSize: f, withStyle: style)
             return true
         }
-        return (inlineImg,s)
+        return (inlineImg,f)
     }
 }

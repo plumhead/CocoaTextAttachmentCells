@@ -13,9 +13,8 @@ class TextDisplayCell : NSTextAttachmentCell {
     var style   : VisualStyle
     var size    : ElementSize
     
-    init<T : VisualElementRenderer where T.RenderType == NSImage>(item i: VisualPartCreator, style : VisualStyle, usingRenderer rdr: T) {
+    init<T : VisualElementRenderer where T.RenderType == NSImage>(item i: VisualPart, style : VisualStyle, usingRenderer rdr: T) {
         self.style = style
-        
         let (img,s) = rdr.render(item: i, withStyle: style)
         self.size = s
         super.init(imageCell: img)
