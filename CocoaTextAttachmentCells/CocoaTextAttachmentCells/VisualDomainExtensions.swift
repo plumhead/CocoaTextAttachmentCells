@@ -33,17 +33,15 @@ extension VisualPart {
         
         var elements = parts
         if let s = spc {
-            let spcSize = ElementSize(width: s, height: 0, realWidth: s, baseline: 0, xHeight: 0)
-            let spacer = VisualPart.Spacer(frame: spcSize)
+            let spacer = VisualPart.spacer(s, height: 0)
             elements = elements.intersperse(spacer)
         }
         
         let font = NSFont.systemFontOfSize(style.fontSize)
-        let (w,_,a,b) = elements.reduce((0,0,0,0), combine: { (a, p) -> (CGFloat,CGFloat,CGFloat,CGFloat) in
+        let (w,a,b) = elements.reduce((0,0,0), combine: { (a, p) -> (CGFloat,CGFloat,CGFloat) in
             let f = p.frame
-            let h = max(a.1, f.height)
             let asc = f.height - f.baseline
-            return (a.0 + f.width, h, max(a.2,asc), max(a.3,f.baseline))
+            return (a.0 + f.width, max(a.1,asc), max(a.2,f.baseline))
         })
         
         let size = ElementSize(width: w, height: (a+b), realWidth: w, baseline: b, xHeight: font.xHeight)
@@ -51,26 +49,17 @@ extension VisualPart {
     }
     
     static func stack(parts : [VisualPart], withStyle style: VisualStyle) -> VisualPart {
-        switch parts.count {
-        case 0: return VisualPart.Stack(items: [], frame: ElementSize.zero, style: style)
-        case 1: return parts[0]
-        case let n where n % 2 == 0:
-            let font = NSFont.systemFontOfSize(style.fontSize)
-            let (w,h) = parts.reduce((0,0), combine: { (a, p) -> (CGFloat,CGFloat) in
-                let f = p.frame
-                return (max(a.0, f.width), a.1 + f.height)
-            })
-            
-            let mid = n / 2
-            var bs = parts[mid..<n].reduce(0, combine: { (a, p) -> CGFloat in
+        
+        func height(ofSlice s: Range<Int>) -> CGFloat {
+            return parts[s].reduce(0, combine: { (a, p) -> CGFloat in
                 let f = p.frame
                 return a + f.height
             })
-            
-            bs -= font.xHeight/2
-            let frame = ElementSize(width: w, height: h, realWidth: w, baseline: bs, xHeight: font.xHeight)
-            return VisualPart.Stack(items: parts, frame: frame, style: style)
-            
+        }
+        
+        switch parts.count {
+        case 0: return VisualPart.Stack(items: [], frame: ElementSize.zero, style: style)
+        case 1: return parts[0]
         case let n:
             let font = NSFont.systemFontOfSize(style.fontSize)
             let (w,h) = parts.reduce((0,0), combine: { (a, p) -> (CGFloat,CGFloat) in
@@ -79,13 +68,15 @@ extension VisualPart {
             })
             
             let mid = n / 2
-            var bs = parts[mid.successor()..<n].reduce(0, combine: { (a, p) -> CGFloat in
-                let f = p.frame
-                return a + f.height
-            })
+            let bs : CGFloat
+            if n % 2 == 0 {
+                bs = height(ofSlice: mid..<n) - font.xHeight/2
+            }
+            else {
+                let f = parts[mid].frame
+                bs = height(ofSlice: mid.successor()..<n) + f.baseline
+            }
             
-            let f = parts[mid].frame
-            bs += f.baseline
             let frame = ElementSize(width: w, height: h, realWidth: w, baseline: bs, xHeight: font.xHeight)
             return VisualPart.Stack(items: parts, frame: frame, style: style)
         }
@@ -109,8 +100,15 @@ extension VisualPart {
         let of = item.frame
         let h = bf.height + of.height
         let w = max(bf.width, of.width)
-        let frame = ElementSize(width: w, height: h, realWidth: w, baseline: bf.baseline, xHeight: bf.xHeight)
-        return VisualPart.Pair(item: item, positioned: pos, baselined: base, frame: frame, style: style)
+        switch pos {
+        case .Over :
+            let frame = ElementSize(width: w, height: h, realWidth: w, baseline: bf.baseline, xHeight: bf.xHeight)
+            return VisualPart.Pair(item: item, positioned: pos, baselined: base, frame: frame, style: style)
+
+        case .Under:
+            let frame = ElementSize(width: w, height: h, realWidth: w, baseline: bf.baseline + of.height, xHeight: bf.xHeight)
+            return VisualPart.Pair(item: item, positioned: pos, baselined: base, frame: frame, style: style)
+        }
     }
     
     static func under(item: VisualPart, base: VisualPart, withStyle style: VisualStyle) -> VisualPart {

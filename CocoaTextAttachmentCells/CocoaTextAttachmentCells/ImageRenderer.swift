@@ -14,12 +14,20 @@ class GraphicalImageRender : VisualElementRenderer, VisualElementLayoutHandler {
     typealias RenderType = NSImage
     
     func text(text: String, atPoint p: NSPoint, withStyle style: VisualStyle) {
+        guard let ctx = NSGraphicsContext.currentContext() else {return}
+        CGContextSaveGState(ctx.CGContext)
+        defer {CGContextRestoreGState(ctx.CGContext)}
+
         let ns = text as NSString
         let font = NSFont.systemFontOfSize(style.fontSize)
         ns.drawAtPoint(p, withAttributes: [NSFontAttributeName:font,NSForegroundColorAttributeName:NSColor.blackColor()])
     }
     
     func box(origin: NSPoint, size: NSSize, withStyle style: VisualStyle) {
+        guard let ctx = NSGraphicsContext.currentContext() else {return}
+        CGContextSaveGState(ctx.CGContext)
+        defer {CGContextRestoreGState(ctx.CGContext)}
+
         let r = NSRect(origin: origin, size: size)
         let p = NSBezierPath(rect: r)
         NSColor.blackColor().setStroke()
@@ -28,6 +36,10 @@ class GraphicalImageRender : VisualElementRenderer, VisualElementLayoutHandler {
     }
         
     func shape(type: ShapeType, frame f: NSRect, withStyle style: VisualStyle) {
+        guard let ctx = NSGraphicsContext.currentContext() else {return}
+        CGContextSaveGState(ctx.CGContext)
+        defer {CGContextRestoreGState(ctx.CGContext)}
+        
         switch type {
         case .Empty: ()
 
