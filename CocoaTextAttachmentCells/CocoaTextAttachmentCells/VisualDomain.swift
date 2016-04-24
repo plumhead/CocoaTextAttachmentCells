@@ -21,6 +21,7 @@ struct ElementSize {
 struct VisualStyle {
     let fontSize    : CGFloat
     let drawFrame   : Bool
+    let inline      : Bool 
 }
 
 enum ShapeType {

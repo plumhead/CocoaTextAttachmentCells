@@ -28,6 +28,11 @@ extension VisualPart {
         }
     }
     
+    static func line(sp: NSPoint, ep: NSPoint, fr: ElementSize, withStyle style : VisualStyle) -> VisualPart {
+        let lns = ShapeType.Path(points: [sp,ep])
+        return VisualPart.Shape(type: lns, frame: fr, style: style)
+    }
+    
     static func sequence(parts: [VisualPart], withStyle style: VisualStyle, withSpacing spc: CGFloat? = .None) -> VisualPart {
         guard parts.count > 0 else {return VisualPart.Sequence(items: [], frame: ElementSize.zero , style: style)}
         
@@ -49,7 +54,6 @@ extension VisualPart {
     }
     
     static func stack(parts : [VisualPart], withStyle style: VisualStyle) -> VisualPart {
-        
         func height(ofSlice s: Range<Int>) -> CGFloat {
             return parts[s].reduce(0, combine: { (a, p) -> CGFloat in
                 let f = p.frame
@@ -125,16 +129,22 @@ extension VisualPart {
 /// Modify the Visual Styling (simply allow font size change at the moment)
 extension VisualStyle {
     // frame the element
-    var framed : VisualStyle { return VisualStyle(fontSize: self.fontSize, drawFrame: true) }
+    func framed(f: Bool) -> VisualStyle {
+        return VisualStyle(fontSize: self.fontSize, drawFrame: f, inline: self.inline)
+    }
     
+    func inlined(i : Bool) -> VisualStyle {
+        return VisualStyle(fontSize: self.fontSize, drawFrame: self.drawFrame, inline: i)
+    }
+
     // Reduce the fontSize
     var smaller : VisualStyle {
         let fs = self.fontSize > 6 ? self.fontSize * 0.8 : self.fontSize
-        return VisualStyle(fontSize: fs, drawFrame: self.drawFrame)
+        return VisualStyle(fontSize: fs, drawFrame: self.drawFrame, inline: self.inline)
     }
     
     // Increase the fontSize
     var bigger : VisualStyle {
-        return VisualStyle(fontSize: self.fontSize * 1.2, drawFrame: self.drawFrame)
+        return VisualStyle(fontSize: self.fontSize * 1.2, drawFrame: self.drawFrame, inline: self.inline)
     }
 }
