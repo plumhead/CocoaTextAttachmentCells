@@ -27,7 +27,7 @@ extension String {
 
 extension String : VisualPartConvertible {
     func build(withStyle style: VisualStyle) -> VisualPart {
-        let size = VisualPart.textSize(forText: self, withFont: NSFont.systemFontOfSize(style.fontSize))
+        let size = VisualPart.textSize(forText: self, withFont: style.displayFont())
         return VisualPart.Text(t: self, frame: size, style: style)
     }
 }

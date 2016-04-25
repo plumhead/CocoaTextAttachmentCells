@@ -42,7 +42,7 @@ extension VisualPart {
             elements = elements.intersperse(spacer)
         }
         
-        let font = NSFont.systemFontOfSize(style.fontSize)
+        let font = style.displayFont()
         let (w,a,b) = elements.reduce((0,0,0), combine: { (a, p) -> (CGFloat,CGFloat,CGFloat) in
             let f = p.frame
             let asc = f.height - f.baseline
@@ -65,7 +65,7 @@ extension VisualPart {
         case 0: return VisualPart.Stack(items: [], frame: ElementSize.zero, style: style)
         case 1: return parts[0]
         case let n:
-            let font = NSFont.systemFontOfSize(style.fontSize)
+            let font = style.displayFont()
             let (w,h) = parts.reduce((0,0), combine: { (a, p) -> (CGFloat,CGFloat) in
                 let f = p.frame
                 return (max(a.0, f.width), a.1 + f.height)
@@ -130,21 +130,47 @@ extension VisualPart {
 extension VisualStyle {
     // frame the element
     func framed(f: Bool) -> VisualStyle {
-        return VisualStyle(fontSize: self.fontSize, drawFrame: f, inline: self.inline)
+        return VisualStyle(fontSize: self.fontSize, drawFrame: f, inline: self.inline, italic: self.italic, bold: self.bold)
+    }
+    
+    func italisised(i: Bool) -> VisualStyle {
+        return VisualStyle(fontSize: self.fontSize, drawFrame: self.drawFrame, inline: self.inline, italic: i, bold: self.bold)
+    }
+    
+    func bolded(b: Bool) -> VisualStyle {
+        return VisualStyle(fontSize: self.fontSize, drawFrame: self.drawFrame, inline: self.inline, italic: self.italic, bold: b)
     }
     
     func inlined(i : Bool) -> VisualStyle {
-        return VisualStyle(fontSize: self.fontSize, drawFrame: self.drawFrame, inline: i)
+        return VisualStyle(fontSize: self.fontSize, drawFrame: self.drawFrame, inline: i, italic: self.italic, bold: self.bold)
     }
 
     // Reduce the fontSize
     var smaller : VisualStyle {
         let fs = self.fontSize > 6 ? self.fontSize * 0.8 : self.fontSize
-        return VisualStyle(fontSize: fs, drawFrame: self.drawFrame, inline: self.inline)
+        return VisualStyle(fontSize: fs, drawFrame: self.drawFrame, inline: self.inline, italic: self.italic, bold: self.bold)
     }
     
     // Increase the fontSize
     var bigger : VisualStyle {
-        return VisualStyle(fontSize: self.fontSize * 1.2, drawFrame: self.drawFrame, inline: self.inline)
+        return VisualStyle(fontSize: self.fontSize * 1.2, drawFrame: self.drawFrame, inline: self.inline, italic: self.italic, bold: self.bold)
+    }
+    
+    func displayFont() -> NSFont {
+        var traits : NSFontTraitMask = NSFontTraitMask()
+        if italic {
+            traits.insert(NSFontTraitMask.ItalicFontMask)
+        }
+        
+        if bold {
+            traits.insert(NSFontTraitMask.BoldFontMask)
+        }
+        
+        let fm = NSFontManager.sharedFontManager()
+        if let fnt = fm.fontWithFamily("Times New Roman", traits: traits, weight: 1, size: fontSize) {
+            return fnt
+        }
+        
+        return NSFont.systemFontOfSize(fontSize)
     }
 }

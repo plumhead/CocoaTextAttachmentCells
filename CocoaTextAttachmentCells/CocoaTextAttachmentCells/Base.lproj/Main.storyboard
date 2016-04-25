@@ -685,14 +685,6 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="minSize" width="480" height="270"/>
                                             <size key="maxSize" width="480" height="10000000"/>
-                                            <attributedString key="textStorage">
-                                                <fragment content="AbcxyZ">
-                                                    <attributes>
-                                                        <font key="NSFont" metaFont="system" size="60"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="480" height="270"/>
                                             <size key="maxSize" width="480" height="10000000"/>

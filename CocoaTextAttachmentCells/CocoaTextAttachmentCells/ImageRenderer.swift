@@ -19,7 +19,7 @@ class GraphicalImageRender : VisualElementRenderer, VisualElementLayoutHandler {
         defer {CGContextRestoreGState(ctx.CGContext)}
 
         let ns = text as NSString
-        let font = NSFont.systemFontOfSize(style.fontSize)
+        let font = style.displayFont()
         ns.drawAtPoint(p, withAttributes: [NSFontAttributeName:font,NSForegroundColorAttributeName:NSColor.blackColor()])
     }
     
