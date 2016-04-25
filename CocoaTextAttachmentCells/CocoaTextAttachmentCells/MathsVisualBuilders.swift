@@ -137,7 +137,6 @@ extension MathExpr : VisualPartConvertible {
     func build(withStyle style: VisualStyle) -> VisualPart {
         switch self {
         case let .Symbol(s) : return s.build(withStyle: style)
-        case let .Unary(op,ex) : return MathExpr.unary(op, ex: ex, withStyle: style)
         case let .Fraction(num,den) : return MathExpr.fraction(num, den: den, withStyle: style)
         case let .Sequence(exprs) : return MathExpr.mathSequence(exprs, withStyle: style)
         case let .Binomial(ne,ke) : return MathExpr.binomial(ne, ke: ke, withStyle: style)
@@ -228,12 +227,6 @@ extension MathExpr : VisualPartConvertible {
         let lbv = VisualPart.Shape(type: lb, frame: bf, style: style)
         let rbv = VisualPart.Shape(type: rb, frame: bf, style: style)
         return VisualPart.sequence([lbv,exv,rbv], withStyle: style)
-    }
-
-    static func unary(op: String, ex: MathExpr, withStyle style: VisualStyle) -> VisualPart {
-        let opv = op.build(withStyle: style)
-        let exv = ex.build(withStyle: style)
-        return VisualPart.sequence([opv,exv], withStyle: style)
     }
     
     static func leftParen(f: ElementSize) -> ShapeType {

@@ -14,11 +14,11 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let font = NSFont.systemFontOfSize(24)
+        let font = NSFont.systemFontOfSize(18)
         let attr = NSMutableAttributedString(string: "", attributes: [NSForegroundColorAttributeName:NSColor.blackColor(), NSFontAttributeName:font])
 
         // Build the display element part
-        let mathStyle = VisualStyle(fontSize: 24, drawFrame: false, inline: false, italic: false, bold: false)
+        let mathStyle = VisualStyle(fontSize: 18, drawFrame: false, inline: false, italic: false, bold: false)
     
         let py = MathEquations.pythagorasTheorum()
         let logs = MathEquations.logarithms()

@@ -148,7 +148,6 @@ struct MathSymbol {
 
 indirect enum MathExpr {
     case Symbol(sym: MathSymbol)
-    case Unary(op: String, expr: MathExpr)
     case Sequence(exprs: [MathExpr])
     case Fraction(numerator: MathExpr, denominator: MathExpr)
     case Binomial(n: MathExpr, k: MathExpr)
